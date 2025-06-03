@@ -6,8 +6,16 @@ function TrafficLightSimulator() {
   const [myColor, setColor] = useState("red")
 
   useEffect(() => {
+    const colors = ["red", "yellow", "green"];
+    let indexNumber = colors.indexOf(myColor);
 
-  })
+    const interval = setInterval(() => {
+      indexNumber = (indexNumber + 1) % colors.length;
+      setColor(colors[indexNumber]);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [myColor]);
   return (
 
     <div>
